@@ -6,6 +6,7 @@ from nltk.sentiment import SentimentIntensityAnalyzer
 from requests_html import HTMLSession
 import yfinance as yf
 import matplotlib.pyplot as plt
+import csv
 
 
 # Scores a Text and gives it a score between -1 and 1
@@ -34,6 +35,11 @@ def Calc_Profit(Ticker, T_0, T_f, Investment):
     else:
         return 0
 
+#writer to a csv file
+def demo_write_csv(filename, vals1):
+    with open(filename, mode = 'a', newline='') as my_csv:
+        writer = csv.writer(my_csv)
+        writer.writerow(vals1)
 
 
 # Finds polarity scores for each company and returns an array of those scores
@@ -55,8 +61,10 @@ def find_investment():
 
         avg = sum(score) / len(score)
         Scores.append(avg)
+        array = [i,avg]
+        demo_write_csv('scores_data.csv',array)
 
     return Scores    
 
 
-find_investment()
+scores = find_investment()
