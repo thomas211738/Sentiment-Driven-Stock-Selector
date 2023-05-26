@@ -39,7 +39,7 @@ def Calc_Profit(Ticker, T_0, T_f, Investment):
 # Finds polarity scores for each company and returns an array of those scores
 # Takes 10 mins to run   
 def find_investment():
-    df = pd.read_excel('/Users/toto211738/Downloads/S&P500.xlsx')
+    df = pd.read_csv("S&P500.csv")
     name = df['Company']
     Scores = []
     iterator = 1
