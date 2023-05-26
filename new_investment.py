@@ -1,4 +1,4 @@
-
+import DateTime
 from test2 import Calc_Profit
 import pandas as pd
 
@@ -7,8 +7,8 @@ ticker = df['Ticker']
 
 
 def new_investment(Ticker_List, Investment_List):
-    today = '2023-05-24'
-    tommorow = "2023-05-25"
+    today = DateTime.date.today()
+    tommorow = today + DateTime.timedelta(days=1)
 
     profts = []
     iter = 1
