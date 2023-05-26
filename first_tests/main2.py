@@ -1,5 +1,5 @@
 
-from IPython.display import display
+#from IPython.display import display
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt

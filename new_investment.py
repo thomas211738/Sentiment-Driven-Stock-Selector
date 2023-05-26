@@ -2,7 +2,7 @@ import DateTime
 from test2 import Calc_Profit
 import pandas as pd
 
-df = pd.read_excel('/Users/toto211738/Downloads/S&P500.xlsx')
+df = pd.read_csv("S&P500.csv")
 ticker = df['Ticker']
 
 

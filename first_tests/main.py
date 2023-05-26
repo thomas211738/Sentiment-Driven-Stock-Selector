@@ -3,7 +3,7 @@ import pandas as pd
 from Scrapin2 import Headlines
 from GvB import score_text
 from main2 import Calc_Profit
-import datetime
+import DateTime
 import numpy as np
 
 df = pd.read_csv("S&P500.csv")
@@ -41,8 +41,9 @@ companies = dict(sorted(companies.items(), key=lambda item: item[1]))
 
 
 def new_investment(Ticker_List, Investment_List):
-    today = '2023-05-24'
-    tommorow = "2023-05-25"
+   
+    today = DateTime.date.today()
+    tommorow = today + DateTime.timedelta(days=1)
 
     profts = []
     iter = 1
