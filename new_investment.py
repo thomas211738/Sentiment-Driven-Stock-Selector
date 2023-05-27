@@ -26,3 +26,5 @@ def new_investment(Ticker_List, Investment_List):
             profts.append(Investment_List[i])
 
     return profts
+
+new_investment

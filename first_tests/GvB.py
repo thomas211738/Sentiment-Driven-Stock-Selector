@@ -16,3 +16,4 @@ def score_text(text):
     sid = SentimentIntensityAnalyzer()
     value = sid.polarity_scores(text)
     return value['compound']
+
