@@ -1,6 +1,6 @@
-import nltk
-from nltk.sentiment import SentimentIntensityAnalyzer
 
+
+from nltk.sentiment import SentimentIntensityAnalyzer
 
 def sentiment_analyzer(text):
     sid = SentimentIntensityAnalyzer()
@@ -17,3 +17,4 @@ def score_text(text):
     value = sid.polarity_scores(text)
     return value['compound']
 
+print(score_text("I love you"))
