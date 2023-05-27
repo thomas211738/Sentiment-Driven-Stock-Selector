@@ -17,7 +17,9 @@ def score_text(text):
 
 # Returns List of 100 Headlines Based on the company name
 def Headlines(company_name):
-    url = f'https://news.google.com/rss/search?q={company_name}'
+    #url = f'https://news.google.com/rss/search?q={company_name}'
+    url = f'https://news.google.com/rss/search?q={company_name}%20when%3A1d'
+
     s = HTMLSession()
     r = s.get(url)
     title = r.html.find('title')
@@ -28,7 +30,7 @@ def Headlines(company_name):
 def Calc_Profit(Ticker, T_0, T_f, Investment):
     data = yf.download(Ticker, start= T_0, end= T_f)
     if (len(data['Close']) >= 1):
-        new_investment = Investment * ((data['Close'][-1]) / (data['Open'][0]))
+        new_investment = Investment * ( (data['Open'][-1]) / (data['Close'][0]))
         profit = new_investment - Investment
         return profit
     else:
@@ -60,7 +62,7 @@ def find_investment():
 
         avg = sum(score) / len(score)
         Scores.append(avg)
-        array = [i,avg]
+        array = [avg]
         demo_write_csv('scores_data.csv',array)
 
     return Scores    

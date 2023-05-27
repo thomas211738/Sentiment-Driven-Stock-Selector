@@ -1,15 +1,25 @@
-import DateTime
+import datetime
 from test2 import Calc_Profit
 import pandas as pd
+import numpy as np
 
 df = pd.read_csv("S&P500.csv")
 ticker = df['Ticker']
 
 
 def new_investment(Ticker_List, Investment_List):
-    today = DateTime.date.today()
-    tommorow = today + DateTime.timedelta(days=1)
-
+    
+    today = datetime.date.today()
+    yestrday =  today - datetime.timedelta(days=1)
+    tommorow = today + datetime.timedelta(days=1)
+    
+    today_dow = today.strftime("%A")
+    
+    
+    if (today_dow == "Monday"):
+        yestrday = today - datetime.timedelta(days=3)
+        
+        
     profts = []
     iter = 1
 
@@ -18,7 +28,7 @@ def new_investment(Ticker_List, Investment_List):
         iter+=1
         investment = Investment_List[i]
         try:
-            profit = Calc_Profit(Ticker_List[i],today,tommorow,investment)
+            profit = Calc_Profit(Ticker_List[i],yestrday,tommorow,investment)
             profts.append(profit)
             print(investment, profit)
         except:
@@ -27,4 +37,6 @@ def new_investment(Ticker_List, Investment_List):
 
     return profts
 
-new_investment
+
+
+new_investment(["AAPL"], [100])
