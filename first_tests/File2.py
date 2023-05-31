@@ -1,6 +1,7 @@
 
 import yfinance as yf
 import datetime
+import csv
 
 def Calc_Profit(Ticker, T_0, T_f, Investment):
     data = yf.download(Ticker, start= T_0, end= T_f)
@@ -21,16 +22,16 @@ print(Calc_Profit("AAPL",'2023-05-26',"2023-05-28", 100 ))"""
 def new_investment(Ticker_List, Investment_List):
     
     today = datetime.date.today()
-    today = today - datetime.timedelta(days=5)
     yestrday =  today - datetime.timedelta(days=1)
     tommorow = today + datetime.timedelta(days=1)
     
-    today_dow = today.strftime("%A")
+
+    d = yf.download(Ticker_List[0], start= yestrday, end= tommorow)
+
+    while(d.shape[0]==1):
+        yestrday = yestrday - datetime.timedelta(days=1)
+        d =  yf.download(Ticker_List[0], start= yestrday, end= tommorow)
     
-    
-    
-    if (today_dow == "Monday"):
-        yestrday = today - datetime.timedelta(days=3)
         
         
     profts = []
@@ -49,5 +50,15 @@ def new_investment(Ticker_List, Investment_List):
             profts.append(Investment_List[i])
 
     return profts
-   
-print(new_investment(["AAPL"], [100]))
+
+
+def demo_read_csv(filename):
+    scores = []
+    with open(filename, mode='r') as my_csv:
+        reader = csv.reader(my_csv)
+        for record in reader:
+            scores.append(float(record[0]))
+    return scores
+
+x = demo_read_csv("scores_data.csv")
+print((x))

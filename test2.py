@@ -42,6 +42,15 @@ def demo_write_csv(filename, vals1):
         writer = csv.writer(my_csv)
         writer.writerow(vals1)
 
+#reading a csv file and converting to float numbers
+def fdemo_read_csv(filename):
+    lists = []
+    with open(filename, mode='r') as my_csv:
+        reader = csv.reader(my_csv)
+        for record in reader:
+            lists.append(float(record[0]))
+    return lists
+
 
 # Finds polarity scores for each company and returns an array of those scores
 # Takes 10 mins to run   
