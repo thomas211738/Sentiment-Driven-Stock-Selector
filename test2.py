@@ -22,8 +22,16 @@ def Headlines(company_name):
 
     s = HTMLSession()
     r = s.get(url)
-    title = r.html.find('title')
-    return title
+    titles = r.html.find('title')
+    titles.pop(0)
+    
+    tit = []
+    for title in titles:
+        split_list = title.text.split(" - ")
+        full_text = split_list[0].replace('...', '')
+        tit.append(full_text)
+    
+    return tit
 
 # Calculates profit of an investment based on the company, inital time you invested
 # and final time, and how much you invested
@@ -67,7 +75,7 @@ def find_investment():
         score = []
 
         for headline in headlines:
-            score.append(score_text(headline.text))
+            score.append(score_text(headline))
 
         avg = sum(score) / len(score)
         Scores.append(avg)
@@ -77,4 +85,5 @@ def find_investment():
     return Scores    
 
 
-scores = find_investment()
+
+    
