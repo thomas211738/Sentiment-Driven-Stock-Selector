@@ -15,6 +15,7 @@ investment_list = fdemo_read_csv("scores_data.csv")
 def new_investment(Ticker_List, Investment_List):
     
     today = datetime.date.today()
+    today = today - datetime.timedelta(days=2)
     yestrday =  today - datetime.timedelta(days=1)
     tommorow = today + datetime.timedelta(days=1)
     
@@ -46,5 +47,6 @@ def new_investment(Ticker_List, Investment_List):
 
     return profts
 
+il = np.ones(503)*10
+new_investment(ticker, il)
 
-new_investment(ticker, investment_list)
