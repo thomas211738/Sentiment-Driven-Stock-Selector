@@ -76,14 +76,18 @@ def find_investment():
 
         for headline in headlines:
             score.append(score_text(headline))
+        
+        if(len(score)!=0):
 
-        avg = sum(score) / len(score)
-        Scores.append(avg)
-        array = [avg]
-        demo_write_csv('scores_data.csv',array)
+            avg = sum(score) / len(score)
+            Scores.append(avg)
+            array = [avg]
+            demo_write_csv('scores_data.csv',array)
+        else:
+            demo_write_csv('scores_data.csv',[0])
 
     return Scores    
 
 
-
+find_investment()
     
