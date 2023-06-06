@@ -17,4 +17,4 @@ def score_text(text):
     value = sid.polarity_scores(text)
     return value['compound']
 
-print(score_text("I love you"))
+print(score_text("Introducing Apple Vision Pro: Apple's first spatial computer"))

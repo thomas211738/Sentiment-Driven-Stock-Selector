@@ -1,17 +1,17 @@
 #,Company,Ticker
-1,Apple ,AAPL
-2,Microsoft ,MSFT
+1,Apple,AAPL
+2,Microsoft,MSFT
 3,Amazon,AMZN
 4,Nvidia,NVDA
-5,Alphabet ,GOOGL
-6,Alphabet,GOOG
+5,Google,GOOGL
+6,Google,GOOG
 7,Berkshire Hathaway ,BRK-B
 8,Meta,META
-9,Tesla ,TSLA
+9,Tesla,TSLA
 10,Unitedhealth Group ,UNH
-11,Exxon Mobil ,XOM
+11,Exxon Mobil,XOM
 12,Johnson & Johnson,JNJ
-13,Jpmorgan Chase ,JPM
+13,Jpmorgan Chase,JPM
 14,Visa,V
 15,Procter & Gamble,PG
 16,Eli Lilly,LLY

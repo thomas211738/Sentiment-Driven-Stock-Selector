@@ -5,6 +5,7 @@ import numpy as np
 import yfinance as yf
 from test2 import demo_write_csv
 from test2 import fdemo_read_csv
+from test2 import Calc_Percentage
 
 df = pd.read_csv("S&P500.csv")
 ticker = df['Ticker']
@@ -41,6 +42,9 @@ def new_investment(Ticker_List, Investment_List):
             print(investment, profit)
             array = [profit]
             demo_write_csv('profits.csv',array)
+            percentage = Calc_Percentage(Ticker_List[i],yestrday,tommorow)
+            ar = [percentage]
+            demo_write_csv('percentage.csv',ar)
         except:
             print('Erorr Here')
             profts.append(Investment_List[i])
