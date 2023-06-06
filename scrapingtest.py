@@ -2,6 +2,7 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
+
 root = "https://www.google.com/"
 link = "https://www.google.com/search?q=Apple&tbm=nws&tbs=qdr:d"
 
