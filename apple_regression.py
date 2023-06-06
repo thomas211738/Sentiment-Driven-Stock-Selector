@@ -1,6 +1,7 @@
 
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn import svm
 import matplotlib.pyplot as plt
 import csv
 import seaborn as sns
@@ -23,36 +24,53 @@ apple_row = apple_row[3:]
 X = []
 Y = []
 
+tracker = 1
 for i in range(len(apple_row)):
-    if (i % 2 == 0):
-        X.append(float(apple_row[i]))
-    else:
-        Y.append(float(apple_row[i]))
+    if i == tracker:
+        tracker+=3
+        X.append(float(apple_row[i-1]))
+        Y.append(float(apple_row[i+1]))
         
+print(X)
+print(Y)   
+    
+    
+    
+
+
+
+# for i in range(len(apple_row)):
+#     if (i % 2 == 0):
+#         X.append(float(apple_row[i]))
+#     else:
+#         Y.append(float(apple_row[i]))
+        
+
+
 
 X = np.array(X).reshape(-1,1)
 Y = np.array(Y)
 
-rng = np.random.RandomState(1)
 
-regr_1 = DecisionTreeRegressor(max_depth=4)
-regr_2 = AdaBoostRegressor(DecisionTreeRegressor(max_depth=4), n_estimators=50, random_state=rng)
-
+# Fit regression model
+regr_1 = DecisionTreeRegressor(max_depth=2)
+regr_2 = DecisionTreeRegressor(max_depth=5)
 regr_1.fit(X, Y)
 regr_2.fit(X, Y)
 
-y_1 = regr_1.predict(X)
-y_2 = regr_2.predict(X)
+# Predict
+X_test = np.arange(0.0, 5.0, 0.01)[:, np.newaxis]
+y_1 = regr_1.predict(X_test)
+y_2 = regr_2.predict(X_test)
 
-colors = sns.color_palette("colorblind")
-
+# Plot the results
 plt.figure()
-plt.scatter(X, Y, color=colors[0], label="training samples")
-plt.plot(X, y_1, color=colors[1], label="n_estimators=1", linewidth=2)
-plt.plot(X, y_2, color=colors[2], label="n_estimators=300", linewidth=2)
-plt.xlabel("Scores")
-plt.ylabel("Profits")
-plt.title("Score VS Profits Regression")
+plt.scatter(X, Y, s=20, edgecolor="black", c="darkorange", label="data")
+plt.plot(X_test, y_1, color="cornflowerblue", label="max_depth=2", linewidth=2)
+plt.plot(X_test, y_2, color="yellowgreen", label="max_depth=5", linewidth=2)
+plt.xlabel("data")
+plt.ylabel("target")
+plt.title("Decision Tree Regression")
 plt.legend()
 plt.show()
 
