@@ -101,11 +101,11 @@ def find_investment():
             avg = round(avg,4)
             Scores.append(avg)
             array = [avg]
-            demo_write_csv('scores_data.csv',array)
+            demo_write_csv('CSVs/scores_data.csv',array)
         else:
-            demo_write_csv('scores_data.csv',[0])
+            demo_write_csv('CSVs/scores_data.csv',[0])
 
     return Scores    
 
 
-find_investment()
+#find_investment()
