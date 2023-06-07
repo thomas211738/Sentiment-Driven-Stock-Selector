@@ -3,55 +3,6 @@ import yfinance as yf
 import datetime
 import csv
 
-def Calc_Profit(Ticker, T_0, T_f, Investment):
-    data = yf.download(Ticker, start= T_0, end= T_f)
-    if (len(data['Close']) >= 1):
-        new_investment = Investment * ( (data['Open'][-1]) / (data['Close'][0]))
-        profit = new_investment - Investment
-        return profit
-    else:
-        return 0
-    
-"""data = yf.download("AAPL", start= '2023-05-26', end= "2023-05-28")
-print(data)
-
-
-print(Calc_Profit("AAPL",'2023-05-26',"2023-05-28", 100 ))"""
-
-
-def new_investment(Ticker_List, Investment_List):
-    
-    today = datetime.date.today()
-    yestrday =  today - datetime.timedelta(days=1)
-    tommorow = today + datetime.timedelta(days=1)
-    
-
-    d = yf.download(Ticker_List[0], start= yestrday, end= tommorow)
-
-    while(d.shape[0]==1):
-        yestrday = yestrday - datetime.timedelta(days=1)
-        d =  yf.download(Ticker_List[0], start= yestrday, end= tommorow)
-    
-        
-        
-    profts = []
-    iter = 1
-
-    for i in range(len(Ticker_List)):
-        print(iter)
-        iter+=1
-        investment = Investment_List[i]
-        try:
-            profit = Calc_Profit(Ticker_List[i],yestrday,tommorow,investment)
-            profts.append(profit)
-            print(investment, profit)
-        except:
-            print('Erorr Here')
-            profts.append(Investment_List[i])
-
-    return profts
-
-
 def demo_read_csv(filename):
     scores = []
     with open(filename, mode='r') as my_csv:
@@ -60,5 +11,41 @@ def demo_read_csv(filename):
             scores.append(float(record[0]))
     return scores
 
-x = demo_read_csv("scores_data.csv")
-print((x))
+
+def write_to_csv(data):
+    with open('test.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['Column 1', 'Column 2', 'Column 3'])  # Write header row
+        
+        for i, row in enumerate(data):
+            writer.writerow(['', row, ''])  # Write data row with empty values in column 1 and 3
+
+# Example data
+
+def append_to_csv(data):
+    existing_data = []
+
+    # Read the existing data from the CSV file
+    with open('output.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        existing_data = list(reader)
+
+    # Append new data to column 2
+    for i, row in enumerate(existing_data):
+        if i < len(data):
+            row.append(data[i])
+        else:
+            row.append('')
+
+    # Write the updated data back to the CSV file
+    with open('output.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerows(existing_data)
+
+# Example data to append to column 2
+new_data = ['New Data 1', 'New Data 2', 'New Data 3']
+
+append_to_csv(new_data)
+data = demo_read_csv("profits.csv")
+
+write_to_csv(data)

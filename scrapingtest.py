@@ -24,7 +24,7 @@ def news(link):
 
 
 def Headlines(companyname):
-    link = f'https://www.google.com/search?q={companyname}&tbm=nws&tbs=qdr:d'
+    link = f"https://www.google.com/search?q={companyname}&tbm=nws&tbs=qdr:d"
     req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
     webpage = urlopen(req).read()
     soup = BeautifulSoup(webpage, 'html5lib')
@@ -32,7 +32,7 @@ def Headlines(companyname):
     for item in soup.find_all('div', attrs={'class': 'Gx5Zad fP1Qef xpd EtOod pkphOe'}):
                 
         title = (item.find('div', attrs={'class': 'BNeawe vvjwJb AP7Wnd'}).get_text())
-        title = title.replace(",", "")
+
         title = title.replace("...", "")
         titles.append(title)
     return titles

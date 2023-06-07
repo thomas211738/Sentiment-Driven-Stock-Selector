@@ -18,19 +18,24 @@ def score_text(text):
 
 
 # Returns List of all titles from google search first page
-def Headlines(companyname):
-    link = f"https://www.google.com/search?q={companyname}&tbm=nws&tbs=qdr:d"
-    req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
-    webpage = urlopen(req).read()
-    soup = BeautifulSoup(webpage, 'html5lib')
-    titles = []
-    for item in soup.find_all('div', attrs={'class': 'Gx5Zad fP1Qef xpd EtOod pkphOe'}):
-                
-        title = (item.find('div', attrs={'class': 'BNeawe vvjwJb AP7Wnd'}).get_text())
+def Headlines(company_name):
+    #url = f'https://news.google.com/rss/search?q={company_name}'
+    url = f'https://news.google.com/rss/search?q={company_name}%20when%3A1d'
 
-        title = title.replace("...", "")
-        titles.append(title)
-    return titles
+    s = HTMLSession()
+    r = s.get(url)
+    soup = BeautifulSoup(r.content, 'xml')
+    titles = soup.find_all('title')
+    titles.pop(0)
+    
+    tit = []
+    for title in titles:
+        split_list = title.text.split(" - ")
+        full_text = split_list[0].replace('...', '')
+        tit.append(full_text)
+    
+    
+    return tit[:5]
 
 # Calculates profit of an investment based on the company, inital time you invested
 # and final time, and how much you invested
@@ -39,7 +44,7 @@ def Calc_Profit(Ticker, T_0, T_f, Investment):
     if (len(data['Close']) >= 1):
         new_investment = Investment * ( (data['Open'][-1]) / (data['Close'][0]))
         profit = new_investment - Investment
-        return profit
+        return profit.round(3)
     else:
         return 0
     
@@ -90,6 +95,7 @@ def find_investment():
         if(len(score)!=0):
 
             avg = sum(score) / len(score)
+            avg = round(avg,4)
             Scores.append(avg)
             array = [avg]
             demo_write_csv('scores_data.csv',array)
@@ -99,4 +105,4 @@ def find_investment():
     return Scores    
 
 
-#find_investment()
+find_investment()
