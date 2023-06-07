@@ -6,6 +6,8 @@ import matplotlib.pyplot as plt
 import csv
 import seaborn as sns
 import numpy as np
+from sklearn import datasets, linear_model
+from sklearn.metrics import mean_squared_error, r2_score
 
 
 def read_csv_row(filename, row_number):
