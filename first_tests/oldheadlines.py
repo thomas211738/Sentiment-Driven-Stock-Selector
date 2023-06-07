@@ -22,4 +22,6 @@ def Headlines(company_name):
         full_text = split_list[0].replace('...', '')
         tit.append(full_text)
     
-    return tit
+    
+    return tit[:5]
+print(Headlines("Apple"))
