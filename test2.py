@@ -10,7 +10,7 @@ from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 import ssl
 
-ssl._create_default_https_context = ssl._create_unverified_context
+#ssl._create_default_https_context = ssl._create_unverified_context
 
 
 # Scores a Text and gives it a score between -1 and 1
