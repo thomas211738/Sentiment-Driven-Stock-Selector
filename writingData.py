@@ -36,9 +36,9 @@ scores = fdemo_read_csv('CSVs/scores_data.csv')
 # for i in range(len(percentage)):
 #     demo_write_csv('CSVs/output.csv', scores[i])
     
-add_arrays_to_columns('CSVs/output.csv', scores, f'scores {datetime.date.today()}')
-add_arrays_to_columns('CSVs/output.csv', profits, f'profits {datetime.date.today()}')
-add_arrays_to_columns('CSVs/output.csv', percentage, f'percentage {datetime.date.today()}')
+add_arrays_to_columns('CSVs/project_data.csv', scores, f'scores {datetime.date.today()}')
+add_arrays_to_columns('CSVs/project_data.csv', profits, f'profits {datetime.date.today()}')
+add_arrays_to_columns('CSVs/project_data.csv', percentage, f'percentage {datetime.date.today()}')
 
 
 
