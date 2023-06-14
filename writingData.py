@@ -31,16 +31,18 @@ percentage = fdemo_read_csv('CSVs/percentage.csv')
 profits = fdemo_read_csv('CSVs/profits.csv')
 scores = fdemo_read_csv('CSVs/scores_data.csv')
 
-# demo_write_csv('CSVs/output.csv', f'scores {datetime.date.today()}')
 
-# for i in range(len(percentage)):
-#     demo_write_csv('CSVs/output.csv', scores[i])
     
 add_arrays_to_columns('CSVs/project_data.csv', scores, f'scores {datetime.date.today()}')
 add_arrays_to_columns('CSVs/project_data.csv', profits, f'profits {datetime.date.today()}')
 add_arrays_to_columns('CSVs/project_data.csv', percentage, f'percentage {datetime.date.today()}')
 
-
+def clear(filename):
+    with open(filename, 'w') as file:
+        file.truncate(0)
+clear("CSVs/percentage.csv")
+clear("CSVs/scores_data.csv")
+clear("CSVs/profits.csv")
 
 
     
