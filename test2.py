@@ -107,4 +107,5 @@ def find_investment():
 
     return Scores    
 
-#find_investment()
+if __name__ == '__main__':
+    find_investment()

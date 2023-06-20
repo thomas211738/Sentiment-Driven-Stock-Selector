@@ -52,5 +52,7 @@ def new_investment(Ticker_List, Investment_List):
     return profts
 
 il = np.ones(503)*10
-new_investment(ticker, il)
+if __name__ == '__main__':
+    
+    new_investment(ticker, il)
 
