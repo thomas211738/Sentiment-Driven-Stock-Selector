@@ -94,7 +94,7 @@ filtered_list = [d for d in filtered_list if d['R2'] >= 0.1]
 sorted_list = sorted(filtered_list, key=lambda x: x['R2'], reverse = True)
 
 print(sorted_list)
-
+print(len(sorted_list))
 def graph():
     df = pd.read_csv("CSVs/project_data.csv")
     df = df["Ticker"]
