@@ -98,7 +98,7 @@ print(len(sorted_list))
 def graph():
     df = pd.read_csv("CSVs/project_data.csv")
     df = df["Ticker"]
-    ticker = df.iloc[1] # enter the index of the company you want to get
+    ticker = df.iloc[62] # enter the index of the company you want to get
     compRegression(ticker) # or enter the company ticker
 graph()
 
