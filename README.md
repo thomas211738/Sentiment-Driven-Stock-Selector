@@ -15,7 +15,7 @@ This project allows the user to see the graph of any company in the S&P 500.
 
 MIT License
 
-Copyright (c) 2023 Thomas Yousef
+Copyright (c) 2023 Thomas Yousef, Joshua Leeds
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
